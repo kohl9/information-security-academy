@@ -1,0 +1,28 @@
+<%- include('../components/head'); %>
+
+<%- include('../components/header'); %>
+
+<div class="container">
+    <a href="/lessons/new"><button type="button" class="btn btn-dark">New lesson</button></a>
+    <h1>Main page</h1>
+    <div class="row">
+        <% lessons.forEach(lesson => { %>
+            <div class="col-xl-4 col-lg-6 col-md-6">
+                <div class="card">
+                    <img src="/images/rectangle.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= lesson.title %></h5>
+                        <p class="card-text"><%= lesson.description %></p>
+                    </div>
+                    <a href="lessons/<%= lesson.slug %>" class="btn btn-primary">Read More</a>
+                    <a href="lessons/edit/<%= lesson.id %>" class="btn btn-info">Edit</a>
+                    <form action="/lessons/<%= lesson.id %>?_method=DELETE" method="POST" class="d-inline">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+<%- include('../components/foot'); %>
